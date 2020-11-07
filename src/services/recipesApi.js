@@ -11,3 +11,11 @@ export const postRecipe = async (recipe) => {
 
   return json;
 };
+
+export const getAllRecipes = async () => {
+  const res = await fetch(`${process.env.API_URL}/api/v1/recipes`);
+  const json = await res.json();
+  if (!res.ok) throw json;
+
+  return json;
+}

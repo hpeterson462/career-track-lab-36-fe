@@ -8,6 +8,8 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case PREPEND_RECIPE:
       return { ...state, list: [action.payload, ...state.list] };
+    case SET_RECIPES:
+      return { ...state, list: [action.payload, ...state.list] };
     default:
       return state;
   }
