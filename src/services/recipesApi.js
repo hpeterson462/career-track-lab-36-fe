@@ -18,4 +18,15 @@ export const getAllRecipes = async () => {
   if (!res.ok) throw json;
 
   return json;
-}
+};
+
+export const deleteRecipes = async (id) => {
+  const res = await fetch(`${process.env.API_URL}/api/v1/recipes/${id}`, {
+    method: 'DELETE'
+  });
+
+  const json = await res.json();
+  if (!res.ok) throw json;
+
+  return json;
+};

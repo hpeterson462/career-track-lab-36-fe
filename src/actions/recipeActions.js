@@ -1,4 +1,4 @@
-import { getAllRecipes, postRecipe } from '../services/recipesApi';
+import { deleteRecipes, getAllRecipes, postRecipe } from '../services/recipesApi';
 
 export const PREPEND_RECIPE = 'PREPEND_RECIPE';
 export const prependRecipe = recipe => ({
@@ -6,11 +6,13 @@ export const prependRecipe = recipe => ({
   payload: recipe
 });
 
-export const SET_RECIPES = 'SET_RECIPE';
+export const SET_RECIPES = 'SET_RECIPES';
 export const setRecipes = recipes => ({
   type: SET_RECIPES,
   payload: recipes
 });
+
+export const DELETE_RECIPE = 'DELETE_RECIPE';
 
 export const createRecipe = recipe => {
   dispatch => {
@@ -27,5 +29,12 @@ export const createRecipe = recipe => {
       })
   };
 
-
-};
+  export const removeRecipe = id => dispatch => {
+    deleteRecipes(id)
+      .then(recipe => {
+        dispatch({
+          type: DELETE_RECIPE,
+          payload: recipe.id
+        });
+      });
+  };
